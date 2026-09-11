@@ -1,33 +1,54 @@
-# Drop
+# Drop Game
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+Piccola demo desktop in Java e libGDX: il giocatore sposta un contenitore per raccogliere le gocce che cadono dall'alto.
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+**Progetto individuale.** Esercitazione su input, animazione, collisioni e audio.
 
-## Platforms
+## Funzionalità implementate
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+- Creazione periodica delle gocce in posizioni orizzontali casuali.
+- Movimento del contenitore tramite tastiera e puntatore premuto.
+- Limiti orizzontali al movimento.
+- Rilevamento delle collisioni tramite rettangoli.
+- Rimozione delle gocce raccolte o uscite dallo schermo.
+- Sprite, immagine di sfondo, musica in ripetizione ed effetto sonoro alla raccolta.
+- Adattamento della vista tramite `FitViewport`.
 
-## Gradle
+## Comandi
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+- **Freccia sinistra:** movimento mentre il tasto è premuto.
+- **Freccia destra:** piccolo spostamento a ogni nuova pressione, secondo l'implementazione attuale.
+- **Puntatore premuto:** il contenitore segue la coordinata orizzontale del puntatore.
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+## Tecnologie e struttura
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+Java, libGDX 1.14.0, Gradle e LWJGL3.
+
+- `core/src/main/java/it/giovanna/drop/Main.java`: logica, input e disegno.
+- `lwjgl3/`: avvio desktop e configurazione della distribuzione.
+- `assets/`: immagini e audio.
+- `gradle/` e `gradlew.bat`: configurazione e wrapper Gradle.
+
+## Avvio desktop
+
+La configurazione del daemon Gradle indica una toolchain Java 17. Predisporre un JDK 17 e una connessione per scaricare le dipendenze.
+
+In PowerShell, dalla radice del repository:
+
+```powershell
+.\gradlew.bat lwjgl3:run
+```
+
+Per generare il JAR desktop:
+
+```powershell
+.\gradlew.bat lwjgl3:jar
+```
+
+L'output viene prodotto in `lwjgl3/build/libs`. Su macOS/Linux si usa `./gradlew` al posto di `.\gradlew.bat`.
+
+## Limiti della demo
+
+Non sono implementati punteggio, livelli o una schermata di fine partita nella classe principale analizzata. `pause()` e `resume()` lanciano `UnsupportedOperationException`; `dispose()` non libera ancora le risorse. La gestione del ciclo di vita è quindi da completare.
+
+Le istruzioni derivano dal codice e dai task Gradle; avvio e build non sono stati eseguiti durante questa revisione.
