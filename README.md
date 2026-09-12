@@ -1,8 +1,6 @@
 # Drop Game
 
-Piccola demo desktop in Java e libGDX: il giocatore sposta un contenitore per raccogliere le gocce che cadono dall'alto.
-
-**Progetto individuale.** Esercitazione su input, animazione, collisioni e audio.
+Piccola demo desktop in Java e libGDX: il giocatore sposta un contenitore per raccogliere le gocce che cadono dall'alto.**Demo individuale di apprendimento, realizzata seguendo un tutorial.** L’obiettivo è esercitarmi con Java e libGDX attraverso input, animazione, collisioni e audio. Il progetto mantiene l’ambito di una piccola demo guidata: non è pensato come videogioco completo con livelli, progressione e tutte le funzionalità di un prodotto finito. Le funzionalità presenti e le osservazioni tecniche riportate di seguito descrivono lo stato effettivo del codice.
 
 ## Funzionalità implementate
 
